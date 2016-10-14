@@ -1,4 +1,4 @@
-#!/usr/bin/gjs-console
+const Mainloop = imports.mainloop;
 
 let globalFunc;
 {
@@ -22,3 +22,13 @@ let oRef = f();
 oRef.note = "Not so safe after all!";
 
 print(oRef.note);
+
+for (let i=1; i<=5; i++) {
+    (function (j) {
+        Mainloop.timeout_add_seconds(j, function timer(){
+            print( j );
+        });
+    })(i);
+}
+
+Mainloop.run();
