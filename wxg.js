@@ -34,6 +34,10 @@ function _callerName() {
 }
 
 function printInfo() {
-        return className + ' : ' + _callerName();
+    return className + ' : ' + _callerName();
+}
+
+function printStack() {
+    return (new Error()).stack;
 }
 

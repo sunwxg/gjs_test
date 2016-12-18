@@ -17,6 +17,7 @@ const Me = new Lang.Class({
     },
 
     t2: function() {
+        print(Wxg.printStack());
     },
 
     t3: function() {
