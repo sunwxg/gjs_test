@@ -6,7 +6,6 @@ const Lang = imports.lang;
 const Signals = imports.signals;
 const System = imports.system;
 
-
 const HelloGNOME = new Lang.Class ({
     Name: 'HelloGNOME',
 
@@ -29,16 +28,25 @@ const HelloGNOME = new Lang.Class ({
         this._buildUI ();
     },
 
-
-    _click: function () {
+    foo: function () {
         let a = [];
-        for (let i = 0; i < 10000; i++) {
+        for (let i = 0; i < 80000; i++) {
             a[i] = "hello world!";
         }
-        a = null;
+        //return a;
+    },
+
+    _click: function () {
+        //this.foo();
+        let a = [];
+        for (let i = 0; i < 80000; i++) {
+            a[i] = "hello world!";
+        }
+        let t = {'a':a};
 
         print('click');
-        //main.emit('test', a);
+        //main.emit('test', this.foo());
+        main.emit('test', t);
     },
 
     _clickGC: function () {
@@ -67,6 +75,10 @@ const HelloGNOME = new Lang.Class ({
         this._gc.connect("clicked", Lang.bind(this, this._clickGC));
         this._vbox.add(this._gc);
 
+        this._connect = new Gtk.Button({ label: "connect signal" });
+        this._connect.connect("clicked", Lang.bind(main, main._signal));
+        this._vbox.add(this._connect);
+
         this._window.add(this._vbox);
         // Show the window and all child widgets
         this._window.show_all();
@@ -80,11 +92,15 @@ const Main= new Lang.Class ({
 
     // Create the application itself
     _init: function () {
+    },
+
+    _signal: function () {
         this.connect('test', Lang.bind(this, this._test));
+        print("main connect signal");
     },
 
     _test: function (main, para) {
-        print(para[0]);
+        print(para.a[0]);
     },
 });
 Signals.addSignalMethods(Main.prototype);
