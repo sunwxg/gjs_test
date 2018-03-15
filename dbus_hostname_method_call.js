@@ -12,14 +12,6 @@ const HostnameIface = '<node> \
 
 const HostnameProxy = Gio.DBusProxy.makeProxyWrapper(HostnameIface);
 
-//function Hostname(initCallback, cancellable) {
-    //return new HostnameProxy(Gio.DBus.system,
-                             //'org.freedesktop.hostname1',
-                             //'/org/freedesktop/hostname1',
-                             //initCallback, cancellable);
-//}
-
-
 let hostname = HostnameProxy(Gio.DBus.system,
                              'org.freedesktop.hostname1',
                              '/org/freedesktop/hostname1',
