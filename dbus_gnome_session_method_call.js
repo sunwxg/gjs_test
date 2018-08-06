@@ -28,7 +28,7 @@ let SessionManagerProxy = Gio.DBusProxy.makeProxyWrapper(SessionManagerIface);
 
 function SessionManager(initCallback, cancellable) {
     return new SessionManagerProxy(Gio.DBus.session, 'org.gnome.SessionManager',
-            '/org/gnome/SessionManager', initCallback, cancellable);
+            '/org/gnome/Shell', initCallback, cancellable);
 }
 
 
