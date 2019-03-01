@@ -22,10 +22,13 @@ class Test {
             show_close_button: true,
         });
         let menuButton = new Gtk.MenuButton({});
-        //this.headerBar.add_child(menuButton);
-        this.headerBar.title = 'test';
+        this.headerBar.add(menuButton);
 
-        this.window.add(this.headerBar);
+        this.headerBar.title = 'test';
+        print("wxg: layout: ",this.headerBar.get_decoration_layout());
+
+        //this.window.add(this.headerBar);
+        this.window.set_titlebar(this.headerBar);
     }
 }
 
