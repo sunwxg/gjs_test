@@ -8,7 +8,6 @@ class Test {
     }
 
     _onActivate() {
-        this.headerBar.show_all();
         this.window.show_all();
     }
 
@@ -18,16 +17,17 @@ class Test {
                                                    show_menubar: false,
                                                    can_focus: false,
                                                });
-        this.headerBar = new Gtk.HeaderBar({
-            show_close_button: true,
-        });
-        let menuButton = new Gtk.MenuButton({});
-        this.headerBar.add(menuButton);
-
+        this.headerBar = new Gtk.HeaderBar({ show_close_button: false, });
         this.headerBar.title = 'test';
-        print("wxg: layout: ",this.headerBar.get_decoration_layout());
 
-        //this.window.add(this.headerBar);
+        let button = new Gtk.Button({});
+        button.set_relief(Gtk.ReliefStyle.NONE);
+        button.connect('clicked', () => { this.application.quit(); });
+
+        let image = Gtk.Image.new_from_file('push-pin.png');
+        button.set_image(image);
+
+        this.headerBar.pack_end(button);
         this.window.set_titlebar(this.headerBar);
     }
 }

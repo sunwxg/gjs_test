@@ -1,4 +1,4 @@
-const Cogl = imports.gi.Cogl = 2.0;
+const Cogl = imports.gi.versions.Cogl = 2.0;
 const Clutter = imports.gi.Clutter;
 
 const Gio = imports.gi.Gio;
