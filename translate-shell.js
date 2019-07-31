@@ -33,6 +33,10 @@ class Application {
         this.text.set_xalign(0);
         this.text.set_yalign(0);
 
+        this.text2 = new Gtk.Label({});
+        this.text2.set_xalign(0);
+        this.text2.set_yalign(0);
+
         try {
             //let [result, stdout, stderr, status] = GLib.spawn_command_line_sync("trans -t zh-CH -no-ansi file");
             let [result, stdout, stderr, status] = GLib.spawn_command_line_sync("trans -t zh-CH --show-languages n " + this.word);
@@ -41,18 +45,21 @@ class Application {
             //let text = Utf8ArrayToStr(stdout);
 
             this.text.set_markup(text);
+            this.text2.set_markup(text);
 
         } catch (e) {
             this.text.set_text("Error: " + e.message);
         }
 
-        let scroll_window = new Gtk.ScrolledWindow({});
-        scroll_window.add(this.text);
-
         let vbox = new Gtk.VBox({orientation: Gtk.Orientation.VERTICAL});
-        vbox.add(scroll_window);
+        vbox.add(this.text);
+        vbox.add(new Gtk.Separator({orientation: Gtk.Orientation.HORIZONTAL, margin_bottom: 10}));
+        vbox.add(this.text2);
 
-        this.win.add(vbox);
+        let scroll_window = new Gtk.ScrolledWindow({});
+        scroll_window.add(vbox);
+
+        this.win.add(scroll_window);
     }
 
     _escape_translation(str) {
