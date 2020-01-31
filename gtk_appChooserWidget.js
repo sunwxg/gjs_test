@@ -26,7 +26,7 @@ class Test {
         widget.set_show_all(true);
         window.add(widget);
 
-        widget.connect('application_selected', (a, b) => {
+        widget.connect('application_activated', (a, b) => {
             window.hide()
 
             let name = b.get_filename().split('/');
